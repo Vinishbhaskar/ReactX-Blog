@@ -5,6 +5,7 @@ import AboutPage from './Pages/AboutPage';
 import HomePage from './Pages/HomePage';
 import ArticleListPage from './Pages/ArticleListPage';
 import ArticlePage from './Pages/ArticlePage';
+import NotFoundPage from './Pages/NotFoundPage';
 
 function App() {
   return (
@@ -14,9 +15,10 @@ function App() {
       <div id='page-body'>
         <Routes>
           <Route path='/' element={<HomePage/>}/>
-          <Route path='/about'element={<AboutPage/>}/>
-          <Route path='/articles'element={<ArticleListPage/>}/>
-          <Route path='/article/:articleId'element={<ArticlePage/>}/>
+          <Route path='/about' element={<AboutPage/>}/>
+          <Route path='/articles' element={<ArticleListPage/>}/>
+          <Route path='/article/:articleId' element={<ArticlePage/>}/>
+          <Route path='*' element={<NotFoundPage/>}/>
         </Routes>
       </div>
     </div>
