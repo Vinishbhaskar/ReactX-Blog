@@ -18,7 +18,7 @@ const CreateAccountPage = () => {
                 return
             }
             await createUserWithEmailAndPassword(getAuth(), email, password)
-            navagite('/articles')
+            navagite('/articles')   
 
         }catch(e){
             setError(e.message)
@@ -44,7 +44,7 @@ const CreateAccountPage = () => {
             />
             <input
                 type="password"
-                placeholder="Confirm password"
+                placeholder="Re-enter your password"
                 value={confirmPassword}
                 onChange={e=>setConfirmPassword(e.target.value)}
             />
