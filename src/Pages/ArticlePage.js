@@ -26,7 +26,7 @@ const ArticlePage = () => {
       const newArticleInfo = response.data[0]
       setArticleInfo(newArticleInfo)
     }
-    if (! isLoading) {
+    if (!isLoading) {
       loadArticleInfo();
     }
   }, [articleId, isLoading, user]);
@@ -43,7 +43,7 @@ const ArticlePage = () => {
     const updatedArticle = response.data
     setArticleInfo({
       ...updatedArticle,
-      hasUpvoted: true,
+      canUpvote: true,
     })
   }
 
@@ -72,8 +72,10 @@ const ArticlePage = () => {
           articleName={articleId}
           onArticleUpdated={updatedArticle => setArticleInfo(updatedArticle)}
         />
-      : <button>Log in to Upvote </button>
-    }
+      : <button onClick={() => {
+                        navigate('/login');
+                    }}> Log in to Upvote </button>}
+    
     <CommentsList comments={articleInfo.comments}/>
 
     <OtherArticles/>
