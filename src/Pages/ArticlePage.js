@@ -26,7 +26,7 @@ const ArticlePage = () => {
       const newArticleInfo = response.data[0]
       setArticleInfo(newArticleInfo)
     }
-    if (isLoading) {
+    if (! isLoading) {
       loadArticleInfo();
     }
   }, [articleId, isLoading, user]);
@@ -41,7 +41,10 @@ const ArticlePage = () => {
     const headers = token ? { authtoken: token } : {};
     const response = await axios.put(`/api/articles/${articleId}/upvote`,null, {headers})
     const updatedArticle = response.data
-    setArticleInfo(updatedArticle)
+    setArticleInfo({
+      ...updatedArticle,
+      hasUpvoted: true,
+    })
   }
 
   if(!article){
@@ -54,7 +57,7 @@ const ArticlePage = () => {
 
     <div className="upvotes-section">
       {user
-        ? <button onClick={addUpvote}> {canUpvote ? 'Upvote' : 'Already Upvoted'} </button>
+        ? <button onClick={addUpvote} disabled={!canUpvote}> {canUpvote ? 'Upvote' : 'Already Upvoted'} </button>
         : <button onClick={() => {
                         navigate('/login');
                     }}> Log in to Upvote </button>}
