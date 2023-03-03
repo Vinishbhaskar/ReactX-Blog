@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useState, useEffect } from "react";
 import axios from "axios";
 import NotFoundPage from "./NotFoundPage";
@@ -14,6 +14,8 @@ const ArticlePage = () => {
   const { articleId } = useParams();
 
   const {user, isLoading} = useUser()
+
+  const navigate = useNavigate();
   
   //Use State for Upvoting
   useEffect(() => {
@@ -53,7 +55,9 @@ const ArticlePage = () => {
     <div className="upvotes-section">
       {user
         ? <button onClick={addUpvote}> {canUpvote ? 'Upvote' : 'Already Upvoted'} </button>
-        : <button> Log in to Upvote </button>}
+        : <button onClick={() => {
+                        navigate('/login');
+                    }}> Log in to Upvote </button>}
       <p>This article has {articleInfo.upvotes} upvote(s)</p>
     </div>
   
