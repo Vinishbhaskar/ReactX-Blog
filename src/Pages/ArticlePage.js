@@ -43,7 +43,7 @@ const ArticlePage = () => {
     const updatedArticle = response.data
     setArticleInfo({
       ...updatedArticle,
-      canUpvote: true,
+      hasUpvoted: true,
     })
   }
 
